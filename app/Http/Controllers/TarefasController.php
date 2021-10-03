@@ -127,6 +127,29 @@ class TarefasController extends Controller
     }
 
     /**
+     * Atualiza o status da tarefa para Concluida
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function concluir($id)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if($id === false) {
+            return response('Bad Request', 400);
+        }
+
+        $tarefaConcluida = Tarefa::findOrFail($id);
+        $resultado = $tarefaConcluida->update(['concluida' => 1]);
+        if (!$resultado === true) {
+            return response('Bad Request', 400);
+        }
+
+        return response('No Content', 204);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
