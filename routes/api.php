@@ -45,6 +45,6 @@ Route::prefix('/v1/desafio-logica')->group(function() {
     Route::get('/', [DesafiosLogicaController::class, 'index'])
         ->name('desafio.logica');
 
-    Route::get('/bonus', [DesafiosLogicaController::class, 'bonus'])
+    Route::get('/bonus/{palavra}', [DesafiosLogicaController::class, 'bonus'])
         ->name('desafio.logica.bonus');
 });
