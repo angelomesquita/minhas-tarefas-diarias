@@ -89,13 +89,36 @@ class TarefasController extends Controller
             'concluida' => 'boolean'
         ]);
         $id = filter_var($id, FILTER_VALIDATE_INT);
-        
+
         if($id === false) {
             return response('Bad Request', 400);
         }
 
         $tarefaEditada = Tarefa::findOrFail($id);
         $resultado = $tarefaEditada->update($request->all());
+        if (!$resultado === true) {
+            return response('Bad Request', 400);
+        }
+
+        return response('No Content', 204);
+    }
+
+    /**
+     * Atualiza o status da tarefa para Arquivada
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function arquivar($id)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if($id === false) {
+            return response('Bad Request', 400);
+        }
+
+        $tarefaArquivada = Tarefa::findOrFail($id);
+        $resultado = $tarefaArquivada->update(['arquivada' => 1]);
         if (!$resultado === true) {
             return response('Bad Request', 400);
         }

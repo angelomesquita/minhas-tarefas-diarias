@@ -21,7 +21,7 @@ Route::prefix('/tarefa')->group(function() {
     Route::post('/', [TarefasController::class, 'store'])
         ->name('tarefa.inserir');
 
-    Route::put('/{id}', [TarefasController::class, 'update'])
+    Route::patch('/{id}', [TarefasController::class, 'update'])
         ->name('tarefa.editar');
 
     Route::put('/arquivar/{id}', [TarefasController::class, 'arquivar'])
