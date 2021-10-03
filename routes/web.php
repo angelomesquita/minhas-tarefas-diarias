@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/tarefas', [TarefasController::class, 'index'])
-    ->name('tarefas.listar');
+Route::prefix('/tarefas')->group(function() {
+    Route::get('/', [TarefasController::class, 'index'])
+        ->name('tarefas.listar');
+
+    Route::get('/diasanteriores', [TarefasController::class, 'diasanteriores'])
+        ->name('tarefas.listar.diasanteriores');
+        
+});
 
 Route::prefix('/tarefa')->group(function() {
     Route::post('/', [TarefasController::class, 'store'])

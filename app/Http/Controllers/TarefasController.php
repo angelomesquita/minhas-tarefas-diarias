@@ -25,6 +25,18 @@ class TarefasController extends Controller
         return response($dadosTarefas, 200);
     }
 
+    public function diasanteriores()
+    {
+        $dadosTarefas = Tarefa::where([
+            ['created_at',
+            '<', 
+            Carbon::now()->format('Y-m-d%')],
+            ['arquivada', '=', '0']
+        ])->get();
+
+        return response($dadosTarefas, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

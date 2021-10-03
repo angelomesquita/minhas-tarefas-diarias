@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('/v1/tarefas')->group(function() {
+    Route::get('/', [TarefasController::class, 'index'])
+        ->name('tarefas.listar');
 
-Route::get('/v1/tarefas', [TarefasController::class, 'index'])
-    ->name('tarefas.listar');
+    Route::get('/diasanteriores', [TarefasController::class, 'diasanteriores'])
+        ->name('tarefas.listar.diasanteriores');
+        
+});
 
 Route::prefix('/v1/tarefa')->group(function() {
     Route::post('/', [TarefasController::class, 'store'])
