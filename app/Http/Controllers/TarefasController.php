@@ -15,11 +15,13 @@ class TarefasController extends Controller
      */
     public function index()
     {
-        $dadosTarefas = Tarefa::where(
-            'created_at',
+        $dadosTarefas = Tarefa::where([
+            ['created_at',
             'like', 
-            Carbon::now()->format('Y-m-d%')
-        )->get();
+            Carbon::now()->format('Y-m-d%')],
+            ['arquivada', '=', '0']
+        ])->get();
+
         return response($dadosTarefas, 200);
     }
 
@@ -82,7 +84,23 @@ class TarefasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'arquivada' => 'boolean',
+            'concluida' => 'boolean'
+        ]);
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        
+        if($id === false) {
+            return response('Bad Request', 400);
+        }
+
+        $tarefaEditada = Tarefa::findOrFail($id);
+        $resultado = $tarefaEditada->update($request->all());
+        if (!$resultado === true) {
+            return response('Bad Request', 400);
+        }
+
+        return response('No Content', 204);
     }
 
     /**
