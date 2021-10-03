@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/v1/tarefas', [TarefasController::class, 'index'])
+    ->name('tarefas.listar');
+
+Route::prefix('/v1/tarefa')->group(function() {
+    Route::post('/', [TarefasController::class, 'store'])
+        ->name('tarefa.inserir');
+
+    Route::put('/{id}', [TarefasController::class, 'update'])
+        ->name('tarefa.editar');
+
+    Route::put('/arquivar/{id}', [TarefasController::class, 'arquivar'])
+        ->name('tarefa.arquivar');
+
+    Route::put('/concluir/{id}', [TarefasController::class, 'concluir'])
+        ->name('tarefa.concluir');
 });
