@@ -25,14 +25,31 @@ class TarefasController extends Controller
         return response($dadosTarefas, 200);
     }
 
+    /**
+     * Exibe uma lista das tarefas cadastradas em dias anteriores
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function diasanteriores()
     {
         $dadosTarefas = Tarefa::where([
             ['created_at',
-            '<', 
+            '', 
             Carbon::now()->format('Y-m-d%')],
             ['arquivada', '=', '0']
         ])->get();
+
+        return response($dadosTarefas, 200);
+    }
+
+    /**
+     * Exibe uma lista das tarefas arquivadas
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function arquivadas()
+    {
+        $dadosTarefas = Tarefa::where('arquivada', '=', '1')->get();
 
         return response($dadosTarefas, 200);
     }

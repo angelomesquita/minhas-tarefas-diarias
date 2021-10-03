@@ -21,6 +21,9 @@ Route::prefix('/v1/tarefas')->group(function() {
     Route::get('/diasanteriores', [TarefasController::class, 'diasanteriores'])
         ->name('tarefas.listar.diasanteriores');
         
+    Route::get('/arquivadas', [TarefasController::class, 'arquivadas'])
+        ->name('tarefas.listar.arquivadas');
+
 });
 
 Route::prefix('/v1/tarefa')->group(function() {
