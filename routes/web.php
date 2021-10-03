@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/tarefas', [TarefasController::class, 'index'])
     ->name('tarefas.listar');
 
@@ -33,4 +29,8 @@ Route::prefix('/tarefa')->group(function() {
 
     Route::put('/concluir/{id}', [TarefasController::class, 'concluir'])
         ->name('tarefa.concluir');
+});
+
+Route::get('/', function () {
+    return response('Bad Request', 400);
 });
