@@ -18,9 +18,8 @@ class TarefasController extends Controller
         $dadosTarefas = Tarefa::where(
             'created_at',
             'like', 
-            Carbon::now()->format('Y-m-d') . '%'
+            Carbon::now()->format('Y-m-d%')
         )->get();
-        dd($dadosTarefas);
         return response($dadosTarefas, 200);
     }
 
@@ -42,7 +41,14 @@ class TarefasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['titulo' => 'required']);
+        
+        $retorno = Tarefa::create([
+            'titulo' => $request->input('titulo'),
+            'descricao' => $request->input('descricao')
+        ]);
+
+        return response($retorno, 201);
     }
 
     /**
