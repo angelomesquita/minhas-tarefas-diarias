@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\DesafiosLogicaController;
 use App\Http\Controllers\TarefasController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::prefix('/v1/tarefas')->group(function() {
     Route::get('/', [TarefasController::class, 'index'])
         ->name('tarefas.listar');
@@ -38,4 +39,12 @@ Route::prefix('/v1/tarefa')->group(function() {
 
     Route::put('/concluir/{id}', [TarefasController::class, 'concluir'])
         ->name('tarefa.concluir');
+});
+
+Route::prefix('/v1/desafio-logica')->group(function() {
+    Route::get('/', [DesafiosLogicaController::class, 'index'])
+        ->name('desafio.logica');
+
+    Route::get('/bonus', [DesafiosLogicaController::class, 'bonus'])
+        ->name('desafio.logica.bonus');
 });

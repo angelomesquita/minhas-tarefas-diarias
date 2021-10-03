@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TarefasController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista das tarefas cadastradas no dia e não arquivadas.
      *
      * @return \Illuminate\Http\Response
      */
@@ -65,7 +65,7 @@ class TarefasController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Insere uma nova tarefa no banco de dadoss
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -105,7 +105,7 @@ class TarefasController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza dados de uma tarefa específica
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
