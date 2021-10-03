@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tarefa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TarefasController extends Controller
@@ -13,7 +15,13 @@ class TarefasController extends Controller
      */
     public function index()
     {
-        //
+        $dadosTarefas = Tarefa::where(
+            'created_at',
+            'like', 
+            Carbon::now()->format('Y-m-d') . '%'
+        )->get();
+        dd($dadosTarefas);
+        return response($dadosTarefas, 200);
     }
 
     /**
