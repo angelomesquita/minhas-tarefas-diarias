@@ -13,6 +13,12 @@ class NumerosPrimos
         $this->carregandoNumeros();
     }
 
+    /**
+     * Executa a regra de verificação dos números primos de 3, números primos
+     * de 5 e números primos de 3 e 5.
+     *
+     * @return array
+     */
     public function substituiNumeros()
     {
         foreach ($this->numeros as &$numero) {
@@ -32,6 +38,11 @@ class NumerosPrimos
         return $this->numeros;
     }
 
+    /**
+     * Inicializa um array com números de 1 a 100.
+     *
+     * @return void
+     */
     private function carregandoNumeros()
     {
         $this->numeros = [];
@@ -41,6 +52,12 @@ class NumerosPrimos
         }   
     }
 
+    /**
+     * Verifica se o número é primo de 3.
+     *
+     * @param int $numero
+     * @return boolean
+     */
     private function ehPrimoDeTres($numero)
     {
         if ($numero % 3 === 0) {
@@ -50,6 +67,12 @@ class NumerosPrimos
         return false;
     }
 
+    /**
+     * Verifica se o número é primo de 5.
+     *
+     * @param int $numero
+     * @return boolean
+     */
     private function ehPrimoDeCinco($numero)
     {
         if ($numero % 5 === 0) {
@@ -59,6 +82,13 @@ class NumerosPrimos
         return false;
     }
 
+    /**
+     * Verifica se o número é primo de 3 e de 5.
+     *
+     * @param boolean $ehPrimoDeTres
+     * @param boolean $ehPrimoDeCinco
+     * @return string|null
+     */
     private function executaSubstituicao($ehPrimoDeTres, $ehPrimoDeCinco)
     {
         if ($ehPrimoDeTres === true && $ehPrimoDeCinco === true) {

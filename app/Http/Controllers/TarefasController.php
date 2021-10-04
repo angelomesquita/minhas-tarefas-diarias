@@ -54,6 +54,13 @@ class TarefasController extends Controller
         return response($dadosTarefas, 200);
     }
 
+    /**
+     * Vincula um id de tag a uma determinada tarefa
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function vinculartag(Request $request, $id)
     {
         $request->validate(['tag_id' => 'required|integer']);
@@ -72,6 +79,12 @@ class TarefasController extends Controller
 
     }
 
+    /**
+     * Filtra tarefas por uma tag específica
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function portags($id)
     {
         $id = filter_var($id, FILTER_VALIDATE_INT);

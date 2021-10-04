@@ -11,6 +11,12 @@ class FormataLetra
         $this->palavra = $palavra;
     }
 
+    /**
+     * Executa a alternância entre maiúsculas e minúsculas em cada letra
+     * da palavra de acordo com a primeira letra.
+     *
+     * @return string $palavra
+     */
     public function alternaMaiusculasMinusculas()
     {
         $comecaComMaiuscula = $this->ehMaiscula($this->palavra[0]);
@@ -27,6 +33,15 @@ class FormataLetra
         return $this->palavra;
     }
 
+    /**
+     * Com base na primeira letra altera o CASE da letra para maiúscula ou
+     * minúscula
+     *
+     * @param boolean $comecaComMaiuscula
+     * @param string $letra
+     * @param int $posicao
+     * @return string
+     */
     private function alternar($comecaComMaiuscula, $letra, $posicao)
     {
         if ($comecaComMaiuscula === true && $posicao % 2 === 0) {
@@ -46,6 +61,12 @@ class FormataLetra
         }
     }
 
+    /**
+     * Verifica se determinada letra é maíscula.
+     *
+     * @param string $letra
+     * @return boolean
+     */
     private function ehMaiscula($letra)
     {
         if (ctype_upper($letra) === false) {
