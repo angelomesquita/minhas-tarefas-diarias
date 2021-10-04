@@ -54,6 +54,40 @@ class TarefasController extends Controller
         return response($dadosTarefas, 200);
     }
 
+    public function vinculartag(Request $request, $id)
+    {
+        $request->validate(['tag_id' => 'required|integer']);
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        if ($id === false) {
+            return response('Bad Request', 400);
+        }
+
+        $dadosTarefa = Tarefa::findOrFail($id);
+        $resultado = $dadosTarefa->update($request->all());
+        if (!$resultado === true) {
+            return response('Bad Request', 400);
+        }
+
+        return response('No Content', 204);
+
+    }
+
+    public function portags($id)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        if ($id === false) {
+            return response('Bad Request', 400);
+        }
+
+        $dadosTarefas = Tarefa::with('tag')->where([
+            ['tag_id', 
+            '=',
+            $id]
+        ])->get();
+
+        return response($dadosTarefas, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -73,7 +107,7 @@ class TarefasController extends Controller
     public function store(Request $request)
     {
         $request->validate(['titulo' => 'required']);
-        
+
         $retorno = Tarefa::create([
             'tag_id' => $request->input('tag_id'),
             'titulo' => $request->input('titulo'),

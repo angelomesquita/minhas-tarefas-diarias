@@ -26,6 +26,9 @@ Route::prefix('/v1/tarefas')->group(function() {
     Route::get('/arquivadas', [TarefasController::class, 'arquivadas'])
         ->name('tarefas.listar.arquivadas');
 
+    Route::get('/tags/{id}', [TarefasController::class, 'portags'])
+        ->name('tarefas.portags');
+
 });
 
 Route::prefix('/v1/tarefa')->group(function() {
@@ -40,6 +43,9 @@ Route::prefix('/v1/tarefa')->group(function() {
 
     Route::put('/concluir/{id}', [TarefasController::class, 'concluir'])
         ->name('tarefa.concluir');
+
+    Route::put('/vinculartag/{id}', [TarefasController::class, 'vinculartag'])
+        ->name('tarefa.vinculartag');
 });
 
 Route::prefix('/v1/tags')->group(function() {
