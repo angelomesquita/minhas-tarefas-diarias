@@ -24,7 +24,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**
@@ -52,7 +52,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**
@@ -63,7 +63,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**

@@ -108,7 +108,7 @@ class TarefasController extends Controller
      */
     public function create()
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**
@@ -138,7 +138,7 @@ class TarefasController extends Controller
      */
     public function show($id)
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**
@@ -149,7 +149,7 @@ class TarefasController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response('Bad Request', 400);
     }
 
     /**
@@ -234,6 +234,6 @@ class TarefasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return response('Bad Request', 400);
     }
 }
