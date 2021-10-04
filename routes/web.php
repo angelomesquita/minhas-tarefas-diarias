@@ -41,6 +41,22 @@ Route::prefix('/tarefa')->group(function() {
         ->name('tarefa.concluir');
 });
 
+Route::prefix('/tags')->group(function() {
+    Route::get('/', [TagsController::class, 'index'])
+        ->name('tag.listar');
+});
+
+Route::prefix('/tag')->group(function() {
+    Route::post('/', [TagsController::class, 'store'])
+        ->name('tag.inserir');
+    
+    Route::patch('/{id}', [TagsController::class, 'update'])
+        ->name('tag.editar');
+
+    Route::delete('/{id}', [TagsController::class, 'destroy'])
+        ->name('tag.excluir');
+});
+
 Route::prefix('/desafio-logica')->group(function() {
     Route::get('/', [DesafiosLogicaController::class, 'index'])
         ->name('desafio.logica');

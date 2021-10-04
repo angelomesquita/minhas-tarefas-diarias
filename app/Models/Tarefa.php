@@ -10,4 +10,9 @@ class Tarefa extends Model
     use HasFactory;
 
     protected $fillable = ['titulo', 'descricao','arquivada', 'concluida'];
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
 }   

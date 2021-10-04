@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DesafiosLogicaController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TarefasController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,22 @@ Route::prefix('/v1/tarefa')->group(function() {
 
     Route::put('/concluir/{id}', [TarefasController::class, 'concluir'])
         ->name('tarefa.concluir');
+});
+
+Route::prefix('/v1/tags')->group(function() {
+    Route::get('/', [TagsController::class, 'index'])
+        ->name('tag.listar');
+});
+
+Route::prefix('/v1/tag')->group(function() {
+    Route::post('/', [TagsController::class, 'store'])
+        ->name('tag.inserir');
+    
+    Route::patch('/{id}', [TagsController::class, 'update'])
+        ->name('tag.editar');
+
+    Route::delete('/{id}', [TagsController::class, 'destroy'])
+        ->name('tag.excluir');
 });
 
 Route::prefix('/v1/desafio-logica')->group(function() {

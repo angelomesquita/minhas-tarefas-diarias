@@ -119,7 +119,7 @@ class TarefasController extends Controller
         ]);
         $id = filter_var($id, FILTER_VALIDATE_INT);
 
-        if($id === false) {
+        if ($id === false) {
             return response('Bad Request', 400);
         }
 
