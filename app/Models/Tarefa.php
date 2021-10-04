@@ -9,7 +9,13 @@ class Tarefa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'descricao','arquivada', 'concluida'];
+    protected $fillable = [
+        'titulo', 
+        'tag_id',  
+        'descricao',
+        'arquivada', 
+        'concluida'
+    ];
 
     public function tag()
     {

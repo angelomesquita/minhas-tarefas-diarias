@@ -16,7 +16,7 @@ class CreateTarefasTable extends Migration
     {
         Schema::create('tarefas', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignIdFor(Tag::class)->index()->nullable();
+            $table->foreignIdFor(Tag::class)->nullable()->constrained();
             $table->string('titulo')->charset('utf8');
             $table->string('descricao')->nullable()->charset('utf8');
             $table->boolean('arquivada')->default(false);

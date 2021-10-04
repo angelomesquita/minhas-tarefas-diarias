@@ -75,8 +75,9 @@ class TarefasController extends Controller
         $request->validate(['titulo' => 'required']);
         
         $retorno = Tarefa::create([
+            'tag_id' => $request->input('tag_id'),
             'titulo' => $request->input('titulo'),
-            'descricao' => $request->input('descricao')
+            'descricao' => $request->input('descricao'),
         ]);
 
         return response($retorno, 201);
